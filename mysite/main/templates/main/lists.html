@@ -9,11 +9,24 @@
             <th>Task</th>
             <th>Status</th>
         </tr>
-        {%for i in data.item_set.all %}
+        {%if data.item_set.all.exists %}
+            {%for i in data.item_set.all %}
+                {%block display%}
+                <tr>
+                    <td>{{i.text}}</td>
+                    {% if i.complete == True %}
+                        <td>Completed</td>
+                    {%elif i.complete == False %}
+                        <td>Pending</td>
+                    {%endif%}
+                </tr>
+                {%endblock%}
+            {%endfor%}
+        {% else %}
             <tr>
-                <td>{{i.text}}</td>
-                <td>{{i.complete}}</td>
+                <td>N/A</td>
+                <td>N/A</td>
             </tr>
-        {%endfor%}
+        {%endif%}
     </table>
 {%endblock%}

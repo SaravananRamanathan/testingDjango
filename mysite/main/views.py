@@ -14,9 +14,27 @@ def home(response):
     #return HttpResponse("<h1>testing- srvnn %s</h1>"%id)
     return render(response,"main/home.html",{})
 
+todolist = None
+
 def id(response,idValue:int):
-    todolist = models.ToDoList.objects.get(id=idValue)
+    "displaying all of todolist"
+    global todolist 
+    todolist = models.ToDoList.objects.get(id=idValue)    
     return render(response,"main/lists.html",{"data":todolist})
+
+def pending(response,idValue:int):
+    "only display pending tasks from todolist"
+    global todolist 
+    todolist = models.ToDoList.objects.get(id=idValue)
+    print(f"testing pending url, received id: {idValue}")
+    return render(response,"main/listPending.html",{"data":todolist})
+
+def completed(response,idValue:int):
+    "only display completed tasks from todolist"
+    global todolist 
+    todolist = models.ToDoList.objects.get(id=idValue)
+    print(f"testing compelted, received id: {idValue} ")
+    return render(response,"main/listCompleted.html",{"data":todolist})
 
 """
 #old method
