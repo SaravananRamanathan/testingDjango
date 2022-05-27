@@ -1,6 +1,19 @@
 {% extends 'main/base.html'%}
 {%block title%}To Do List{%endblock%}
 {%block content%}
-    {{name}}
-    {{items}}
+    <h2>
+        {{data.id}}. {{data.name}}
+    </h2>
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Status</th>
+        </tr>
+        {%for i in data.item_set.all %}
+            <tr>
+                <td>{{i.text}}</td>
+                <td>{{i.complete}}</td>
+            </tr>
+        {%endfor%}
+    </table>
 {%endblock%}

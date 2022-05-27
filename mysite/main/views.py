@@ -15,16 +15,8 @@ def home(response):
     return render(response,"main/home.html",{})
 
 def id(response,idValue:int):
-    todolists = models.ToDoList.objects
-    items = todolists.get(id=idValue).item_set.all()
-    name=todolists.get(id=idValue).name
-    itemAsString=""
-    for i in items:
-        itemAsString+=i.text
-        itemAsString+=":"
-        itemAsString+=str(i.complete)
-        itemAsString+="##"
-    return render(response,"main/lists.html",{"name":name,"items":itemAsString})
+    todolist = models.ToDoList.objects.get(id=idValue)
+    return render(response,"main/lists.html",{"data":todolist})
 
 """
 #old method
