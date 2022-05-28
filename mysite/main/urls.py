@@ -7,4 +7,5 @@ from . import views
 #starting page path with ""
 urlpatterns = [
     path("",views.home, name="home"),#home page
+    path("create/",views.create,name="create")
 ]

@@ -2,10 +2,9 @@
 site views
 can create multiple views here.
 """
-from pyexpat import model
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.http.response import HttpResponse
-
+from .forms import CreateNewList
 from . import models
 # Create your views here.
 
@@ -36,21 +35,17 @@ def completed(response,idValue:int):
     print(f"testing compelted, received id: {idValue} ")
     return render(response,"main/listCompleted.html",{"data":todolist})
 
-"""
-#old method
-def id(response,idValue:int):
-    print("testing id")
-    t=models.ToDoList;
-    items=t.objects.get(id=idValue).item_set.all()
-    #print(t.objects.get(id=idValue))
-    text1=f"<h1>The value for id {idValue} is:</h1>\
-        <h2>{t.objects.get(id=idValue).name}</h2>"
-    text2=""
-    if(not items.exists()):
-        text2="<p>no items found.<p>"
-    print(f"checking stuff: {items}")
-    
-    for i in items:
-        text2+=f"<p>{i.text}={i.complete}<p>"
-    return HttpResponse(text1+text2)
-"""
+def create(response):
+    if response.method == "POST":
+        form = CreateNewList(response.POST)
+
+        if form.is_valid():
+            "if data entererd in form is valid"
+            #n=form.cleaned_data["name"]
+            #print(form.cleaned_data)#{'name': 'tada', 'check': True}
+            
+
+        return HttpResponseRedirect("/") #just "/" to redirect to home page 
+    else:    
+        form=CreateNewList()
+    return render(response,"main/create.html",{"form":form})
