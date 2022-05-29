@@ -1,6 +1,8 @@
 {% extends 'main/base.html'%}
 {%block title%}To Do List{%endblock%}
 {%block content%}
+    {%if list.exists %}
+    {%for data in list%} 
     <h2>
         {{data.id}}. {{data.name}}
     </h2>
@@ -29,4 +31,8 @@
             </tr>
         {%endif%}
     </table>
+    {%endfor%}
+    {%else%}
+        <h3>Sorry, no list is available with id={{id}}<h3>
+    {%endif%}
 {%endblock%}

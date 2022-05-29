@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{%block title%} Displaying List {%endblock%}
+
+{%block content%}
+    
+        <h4>ToDoList's:</h4>
+        <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        {%for i in data%}
+            <tr><td>{{i.id}}</td>  <td><li>{{i.name}}</li></td></tr>
+        {%endfor%}
+        </table>
+    
+{%endblock%}
