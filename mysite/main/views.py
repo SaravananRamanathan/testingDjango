@@ -37,7 +37,6 @@ def create(response):
             "if data entererd in form is valid"
             temp = models.ToDoList(name=form.cleaned_data["name"])
             temp.save()
-            print(f"data is valid: {form.cleaned_data}")#{'name': 'tada', 'check': True}
             return HttpResponseRedirect("/display") #just "/" to redirect to home page 
     else:    
         form=CreateNewList()
@@ -48,14 +47,18 @@ def display(response):
     return render(response,"main/display.html",{"data":todolist})
 
 def delete(response):
+    temp = models.ToDoList.objects.all()
+    max_id=0
+    for i in temp:
+        max_id=i.id
+    
     if response.method=="POST":
-        form1 = DeleteList(10,response.POST)
-        print(f"delete button pressed: {form1.is_valid()}")#just checking
+        form1 = DeleteList(max_id,response.POST)
         if form1.is_valid():
-            ""
-            print("valid form: {}".format(form1.cleaned_data))#just checking
+            "if valid input , then delete that id"
+            temp.filter(id=form1.cleaned_data["id"]).delete()
+            
             return HttpResponseRedirect("/display")
     else:
-        form1 = DeleteList(10) #-- i want to do this...and use a number to set maxVaue of a field
-        #form1 = DeleteList()
+        form1 = DeleteList(max_id)
     return render(response,"main/deleteList.html",{"form":form1})
