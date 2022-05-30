@@ -2,8 +2,8 @@
 {%block title%} Testing todolist {%endblock%}
 
 {%block content%}
-<form method="post",action="/id/#/">
-{%csrf_token%}
+<form method="post",action="#">
+ {% csrf_token %}
  {%if list.exists%}
   {%for data in list%}
     <h4>{{data.id}}.{{data.name}}</h4>

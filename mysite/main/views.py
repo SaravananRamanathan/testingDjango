@@ -21,7 +21,7 @@ def id(response,idValue:int):
     print(todolist)
     if response.method=="POST":
         ""
-        print(response.POST)
+        print(f'testing response: {response.POST}, {response.POST.get("save")}')
         if response.POST.get("save"):
             ""
             print("testing save button")
@@ -63,6 +63,7 @@ def create(response):
 
 def display(response):
     #todolist = models.ToDoList.objects.all()
+    #TODO: this display function probs will fail if there is no data in list.
     todolist = models.ToDoList.objects.raw("SELECT *,row_number() OVER(ORDER BY Id) AS ROWNUM FROM main_todolist")
         #print(i.ROWNUM)
     return render(response,"main/display.html",{"data":todolist})
