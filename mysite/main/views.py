@@ -2,7 +2,6 @@
 site views
 can create multiple views here.
 """
-from glob import glob
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import CreateNewList,DeleteList
@@ -43,7 +42,9 @@ def create(response):
     return render(response,"main/createList.html",{"form":form})
 
 def display(response):
-    todolist = models.ToDoList.objects.all()
+    #todolist = models.ToDoList.objects.all()
+    todolist = models.ToDoList.objects.raw("SELECT *,row_number() OVER(ORDER BY Id) AS ROWNUM FROM main_todolist")
+        #print(i.ROWNUM)
     return render(response,"main/display.html",{"data":todolist})
 
 def delete(response):

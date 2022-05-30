@@ -6,11 +6,16 @@
         <h4>ToDoList's:</h4>
         <table>
         <tr>
+            <th>Row</th>
             <th>Id</th>
             <th>Name</th>
         </tr>
         {%for i in data%}
-            <tr><td>{{i.id}}</td>  <td><li>{{i.name}}</li></td></tr>
+            <tr> 
+                <td>{{i.ROWNUM}}</td>  
+                <td><li>{{i.id}}</li></td>  
+                <td><li>{{i.name}}</li></td> 
+            </tr>
         {%endfor%}
         </table>
     
