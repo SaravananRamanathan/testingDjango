@@ -28,11 +28,16 @@ def id(response,idValue:int):
         elif response.POST.get("newItem"):
             ""
             print("testing get button")
-    
+    class sendToTemplate:
+        temp=0
+        def num(self,):
+            self.temp+=1
+            return self.temp
+    #data=sendToTemplate()
     #print(f"testing items: {todolist[0].item_set.all().count()}")  
     #testingLists.html -- new mthod custom forms/advaned forms
     #lists.html -- old method with basic forms
-    return render(response,"main/testingLists.html",{"list":todolist,"id":idValue,"sno":1})
+    return render(response,"main/testingLists.html",{"list":todolist,"id":idValue,"sno":sendToTemplate()})
 
 def pending(response,idValue:int):
     "only display pending tasks from todolist"

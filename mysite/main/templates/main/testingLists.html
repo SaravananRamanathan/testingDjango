@@ -16,7 +16,7 @@
         {%if data.item_set.all.exists%}
          {%for i in data.item_set.all%}
           <tr>
-           <td>{{i.id}}</td>
+           <td>{{sno.num}}</td>
            <td>{{i.text}}</td>
            {%if i.complete == True%} 
             <td><input type="checkbox",value="clicked",name="c{{item.id}}" checked></td>
