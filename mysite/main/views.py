@@ -16,8 +16,23 @@ def home(response):
 
 def id(response,idValue:int):
     "displaying all of todolist"
-    todolist = models.ToDoList.objects.filter(id=idValue) 
-    return render(response,"main/lists.html",{"list":todolist,"id":idValue})
+    #todolist = models.ToDoList.objects.raw(f"SELECT *,row_number() OVER(ORDER BY Id) AS sno FROM main_todolist WHERE id={idValue}")#.filter(id=idValue)
+    todolist = models.ToDoList.objects.filter(id=idValue)
+    print(todolist)
+    if response.method=="POST":
+        ""
+        print(response.POST)
+        if response.POST.get("save"):
+            ""
+            print("testing save button")
+        elif response.POST.get("newItem"):
+            ""
+            print("testing get button")
+    
+    #print(f"testing items: {todolist[0].item_set.all().count()}")  
+    #testingLists.html -- new mthod custom forms/advaned forms
+    #lists.html -- old method with basic forms
+    return render(response,"main/testingLists.html",{"list":todolist,"id":idValue,"sno":1})
 
 def pending(response,idValue:int):
     "only display pending tasks from todolist"
