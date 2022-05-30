@@ -19,9 +19,9 @@
            <td>{{sno.num}}</td>
            <td>{{i.text}}</td>
            {%if i.complete == True%} 
-            <td><input type="checkbox",value="clicked",name="c{{item.id}}" checked></td>
+            <td><input type="checkbox" value="clicked" name="c{{i.id}}" checked></td>
            {%elif i.complete == False%} 
-            <td><input type="checkbox",value="clicked",name="c{{item.id}}"></td>   
+            <td><input type="checkbox" value="clicked" name="c{{i.id}}"></td>   
            {%endif%} 
           </tr>
          {%endfor%}
@@ -35,11 +35,11 @@
   {%endfor%}
  <table>
     <tr>
-    <td><input type="text",name="new"></td>
-    <td><button type="submit",name="newItem",value="newItem">newItem</button></td>
+    <td><input type="text" name="itemName"></td>
+    <td><button type="submit" name="newItem" value="newItem">newItem</button></td>
     </tr>
     <tr>
-    <td><button type="submit",name="save",value="save">save</button></td>
+    <td><button type="submit" name="save" value="save">save</button></td>
     </tr>
  </table>
  {%else%}

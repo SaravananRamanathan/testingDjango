@@ -21,13 +21,37 @@ def id(response,idValue:int):
     print(todolist)
     if response.method=="POST":
         ""
-        print(f'testing response: {response.POST}, {response.POST.get("save")}')
+        print(f'testing response: {response.POST}')
         if response.POST.get("save"):
             ""
             print("testing save button")
+            if todolist[0].item_set.all().exists():
+                for i in todolist[0].item_set.all():
+                    if response.POST.get('c'+str(i.id)):
+                        ""
+                        print("checked case")
+                        i.complete=True
+                        #print(f"{i.complete} {i.text}")
+                        #print(f"{'c'+str(i.id)}={response.POST.get('c'+str(i.id))}")
+                    else:
+                        print("not checked")
+                        i.complete=False
+                        #print(f"{i.complete} {i.text}")
+                        #print(f"{'c'+str(i.id)}={response.POST.get('c'+str(i.id))}")
+                    i.save()
         elif response.POST.get("newItem"):
             ""
-            print("testing get button")
+            print("testing newItem button")
+            itemName:str= response.POST.get("itemName")
+            print(f"New item name:{itemName}.")
+            if not itemName.isspace():
+                if len(itemName)>0:
+                    if itemName[0]!=' ':
+                        #print("elibible")        
+                        todolist[0].item_set.create(text=itemName,complete=False)
+            #todolist[0].item_set.create(text=itemName,complete=False)
+
+
     class sendToTemplate:
         temp=0
         def num(self,):
