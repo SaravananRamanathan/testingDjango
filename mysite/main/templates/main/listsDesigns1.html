@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+{%block title%} Testing todolist {%endblock%}
+
+{%block content%}
+<form method="post",action="#">
+ {% csrf_token %}
+ {%if list.exists%}
+  {%for data in list%}
+    <h1>{{data.name}}</h1>
+         {%for i in data.item_set.all%}
+           <div class="input-group mb-3">
+               <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        {%if i.complete == True%} 
+                        <input type="checkbox" value="clicked" name="c{{i.id}}" checked>
+                        {%elif i.complete == False%} 
+                        <input type="checkbox" value="clicked" name="c{{i.id}}">  
+                        {%endif%}
+                    </div>
+                </div>
+                <input type="text" value="{{i.text}}" class="form-control">
+            </div>
+         {%endfor%}
+  {%endfor%}
+    
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <button type="submit" name="newItem" value="newItem" class="btn btn-success">newItem</button>
+    </div>
+    <input type="text" name="itemName">
+   </div> 
+    <button type="submit" name="save" value="save" class="btn btn-success">save</button>
+ {%else%}
+  <h4>toDoList not found for id:{{id}}</h4>
+ {%endif%}
+</form> 
+{%endblock%}

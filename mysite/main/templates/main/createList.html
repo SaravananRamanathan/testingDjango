@@ -2,10 +2,14 @@
 {%block title%} Create List {%endblock%} 
 
 {%block content%}
- <h1>Create a new toDoList</h1>
- <form method="post" action="/create/">
+ <h4>Create a new toDoList</h4>
+ <form method="post" action="/create/" class="form-group">
      {% csrf_token %}
-     {{form.as_p}}
-     <button type="submit",name="save">Create List</button>
+     <div class="input-group mb-3">
+        <div class="input-group-prepend"><!-- new bootstrap class to kinda mesh the button with text input -->
+            <button type="submit" name="save" class="btn btn-success">Create List</button>
+        </div>
+        {{form.name}}
+     </div>
  </form> 
 {%endblock%} 

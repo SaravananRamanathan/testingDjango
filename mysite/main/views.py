@@ -61,7 +61,7 @@ def id(response,idValue:int):
     #print(f"testing items: {todolist[0].item_set.all().count()}")  
     #testingLists.html -- new mthod custom forms/advaned forms
     #lists.html -- old method with basic forms
-    return render(response,"main/testingLists.html",{"list":todolist,"id":idValue,"sno":sendToTemplate()})
+    return render(response,"main/listsDesigns1.html",{"list":todolist,"id":idValue,"sno":sendToTemplate()})
 
 def pending(response,idValue:int):
     "only display pending tasks from todolist"
@@ -90,7 +90,7 @@ def display(response):
     #TODO: this display function probs will fail if there is no data in list.
     todolist = models.ToDoList.objects.raw("SELECT *,row_number() OVER(ORDER BY Id) AS ROWNUM FROM main_todolist")
         #print(i.ROWNUM)
-    return render(response,"main/display.html",{"data":todolist})
+    return render(response,"main/displayDesigns1.html",{"data":todolist})
 
 def delete(response):
     temp = models.ToDoList.objects.all()
