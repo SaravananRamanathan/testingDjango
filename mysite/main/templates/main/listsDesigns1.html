@@ -1,6 +1,10 @@
 {% extends 'main/base.html' %}
 {%block title%} Testing todolist {%endblock%}
 
+{%block mainHeading%} 
+view data
+{%endblock%}
+
 {%block content%}
 <form method="post",action="#">
  {% csrf_token %}

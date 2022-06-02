@@ -1,5 +1,10 @@
 {% extends 'main/base.html'%}
 {%block title%}To Do List{%endblock%}
+
+{%block mainHeading%} 
+view data
+{%endblock%}
+
 {%block content%}
     {%if list.exists %}
     {%for data in list%} 

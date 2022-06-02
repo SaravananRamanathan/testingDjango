@@ -9,12 +9,18 @@
        
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-                   
-        <link rel="stylesheet" href="{% static 'main/style.css'%}?3"> 
+            
         <!--custom-->
-          
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous">
-
+        <link rel="stylesheet" href="{% static 'main/style.css'%}?6"> 
+        
+        <!--fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Blaka+Hollow&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous">
+        -->
         
         
         <title>{%block title%}Under Construction{%endblock%}</title>
@@ -31,15 +37,6 @@
             </li>
           </ul>
         </nav>-->
-
-
-        <nav class="navbar navbar-light bg-light">
-          <a class="navbar-brand">Navbar</a>
-          <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </nav>
 
 
         <nav class="customSide-navbar" style="padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
@@ -248,15 +245,22 @@
                 </li>
             </ul>
         </nav>
-
         
+        <nav class="navbar navbar-light topbar">
+          <span class="navbar-text unselectable"><!--add later->class:unselectable-->
+            {%block mainHeading%}
+              ... 
+            {%endblock%}
+          </span>
+        </nav>
+
         <div id="content" name="main_content" class="custom-main">
             <!--<div class="row justify-content-center">
                 <div class="col-8">-->
                     <!--<h1 class="mt-2">ToDoList.io</h1>
                     <hr class="mt-0 mb-4">-->
                     {%block content%}
-                        <h3>Working on bringing this page online.<h3>
+                        <h3>We are working on bringing this page online asap.<h3>
                     {%endblock%}
                 <!--</div>
               </div>-->

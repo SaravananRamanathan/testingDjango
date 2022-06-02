@@ -1,6 +1,10 @@
 {% extends 'main/base.html' %}
 {%block title%}Delete List{%endblock%}
 
+{%block mainHeading%} 
+Delete
+{%endblock%}
+
 {%block content%}
     <form method="post" action="/delete/">
         {%csrf_token%}
