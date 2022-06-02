@@ -41,6 +41,9 @@ body::-webkit-scrollbar-thumb{
   background-color: var(--bg-primary);
   transition: 200ms ease;
 }
+.navbar:hover + .main{
+  margin-left: 16rem;
+}
 .navbar-nav{
   list-style: none;
   padding:0;

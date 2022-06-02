@@ -11,7 +11,7 @@ from . import models
 def home(response):
     "home page"
     #return HttpResponse("<h1>testing- srvnn %s</h1>"%id)
-    return render(response,"main/navbar.html",{})
+    return render(response,"main/home.html",{})
 
 
 def id(response,idValue:int):
