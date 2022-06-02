@@ -3,20 +3,24 @@
 
 {%block content%}
     
-        <h4>ToDoList's:</h4>
-        <table>
-        <tr>
-            <th>S.no</th>
-            <!--<th>Id</th>-->
-            <th><li>Name</li></th>
-        </tr>
-        {%for i in data%}
-            <tr> 
-                <td>{{i.ROWNUM}}</td>  
-                <!--<td><li>{{i.id}}</li></td>-->
-                <td><li>{{i.name}}</li></td> 
+        <!--<h4>ToDoList's:</h4>-->
+        <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
             </tr>
-        {%endfor%}
+        </thead>  
+            <tbody>
+            {%for i in data%}
+                <tr> 
+                    <th scope="row">{{i.ROWNUM}}</td>  
+                    <td>{{i.name}}</td> 
+                </tr>
+            {%endfor%}
+            </tbody>
         </table>
+        
+        
     
 {%endblock%}
