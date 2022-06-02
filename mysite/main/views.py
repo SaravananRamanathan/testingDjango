@@ -90,6 +90,8 @@ def display(response):
     #TODO: this display function probs will fail if there is no data in list.
     todolist = models.ToDoList.objects.raw("SELECT *,row_number() OVER(ORDER BY Id) AS ROWNUM FROM main_todolist")
         #print(i.ROWNUM)
+    
+    
     return render(response,"main/displayDesigns1.html",{"data":todolist})
 
 def delete(response):
