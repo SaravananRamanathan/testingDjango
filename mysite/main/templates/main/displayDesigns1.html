@@ -25,11 +25,11 @@
                     <td class="unselectable">{{i.name}}</td> 
                 </tr>
 
-                <tr class="collapse dataid{{i.id}}">
-                    <td>testing line 1</td>
+                <tr class="collapse dataid{{i.id}}" data-show-id={{i.id}}>
+                    <td><button type="button" class="btn btn-success" >Show</button></td>
                 </tr>
-                <tr class="collapse dataid{{i.id}}">
-                    <td>testing line 2</td>
+                <tr class="collapse dataid{{i.id}}" data-delete-id={{i.id}}>
+                    <td><button type="button" class="btn btn-danger" >Delete</button></td>
                 </tr>
 
             {%endfor%}

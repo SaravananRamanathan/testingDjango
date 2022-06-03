@@ -107,6 +107,7 @@ def delete(response):
         max_id=i.id
     
     if response.method=="POST":
+        print("post received")
         form1 = DeleteList(max_id,response.POST)
         if form1.is_valid():
             "if valid input , then delete that id"
