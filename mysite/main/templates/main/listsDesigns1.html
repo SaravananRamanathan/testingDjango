@@ -1,8 +1,12 @@
 {% extends 'main/base.html' %}
 {%block title%} Testing todolist {%endblock%}
 
-{%block mainHeading%} 
-view data
+{%block mainHeading%}
+    {%if headingName%}
+    <span class="navbar-text custom-white-text unselectable">ToDoList: {{headingName}}</span>
+    {%else%}
+    <span class="navbar-text custom-error-text unselectable">Error-no such list</span>
+    {%endif%}
 {%endblock%}
 
 {%block content%}
@@ -10,7 +14,8 @@ view data
  {% csrf_token %}
  {%if list.exists%}
   {%for data in list%}
-    <h1>{{data.name}}</h1>
+    <!--<h1>{{data.name}}</h1>-->
+        {%if data.item_set.all.exists%}
          {%for i in data.item_set.all%}
            <div class="input-group mb-3">
                <div class="input-group-prepend">
@@ -25,6 +30,9 @@ view data
                 <input type="text" value="{{i.text}}" class="form-control">
             </div>
          {%endfor%}
+        {%else%}
+        <h4>this toDoList, does not have any items in it yet. lets change that, add a new item to this list...</h4>
+        {%endif%}
   {%endfor%}
     
   <div class="input-group mb-3">

@@ -50,3 +50,11 @@ new Vue({
 <div id="table">
             <bootstrap-table :columns="columns" :data={{datatest}} :options="options" @on-click-row="onClickRow"></bootstrap-table>
 </div>
+
+
+
+
+
+<!--{%block mainHeading%} 
+view data
+{%endblock%}-->

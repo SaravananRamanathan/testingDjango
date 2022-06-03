@@ -61,6 +61,7 @@ body::-webkit-scrollbar-thumb{
   z-index:3;
   background-color: var(--bg-primary);
   transition: 200ms ease;
+
 }
 .customSide-navbar-nav{
   list-style: none;
@@ -139,19 +140,36 @@ body::-webkit-scrollbar-thumb{
 .customSide-navbar:hover .customSide-logo svg{
   transform:rotate(-540deg);
 }
+.display-table-body{
+  cursor:pointer;
+}
+.custom-display-table{
+  opacity: 0.97;
+}
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: var(--bg-primary);
+}
+.custom-white-text{
+  color:white !important;
+}
+.custom-error-text{
+  color: #ff0000 !important;
+}
 /*small screen*/
 @media only screen and (max-width:600px){
   .topbar{
     height: 3rem;
     background-color: var(--bg-primary);
+    opacity: 0.8;
   }
-  .navbar-text{
+  /*.navbar-text{
     color: white !important;
-  }
+  }*/
   .customSide-navbar{
     bottom:0;
     width:100vw;
     height:5rem;
+    opacity: 0.98;
   }
   .customSide-logo{
     display:none;
@@ -175,15 +193,17 @@ body::-webkit-scrollbar-thumb{
   .topbar{
     height: 5rem;
     background-color: var(--bg-secondary);
+    opacity: 0.8;
   }
   .navbar-text{
     margin-left: 5rem;
-    color: white !important;
+    /*color: white !important;*/
   }
   .customSide-navbar{
     top:0;
     width: 5rem;
     height:100vh;
+    opacity: 0.8;
   }
   .customSide-navbar:hover{
     width: 16rem;

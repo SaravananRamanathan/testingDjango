@@ -2,27 +2,27 @@
 {%block title%} Displaying ToDoList's {%endblock%}
 
 {%block mainHeading%} 
-Display
+<span class="navbar-text custom-white-text unselectable">Display</span>
 {%endblock%}
 
 {%block content%}
     
         <!--<h4>ToDoList's:</h4>-->
         <table 
-        class="table table-dark"
+        class="table table-hover table-striped table-dark custom-display-table"
         id="display-table"
         >
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
+                <th scope="col" class="unselectable">#</th>
+                <th scope="col" class="unselectable">Name</th>
             </tr>
         </thead>  
-            <tbody>
+            <tbody class="display-table-body">
             {%for i in data%}
                 <tr data-display-table-id={{i.id}}> 
-                    <th scope="row">{{i.ROWNUM}}</td>  
-                    <td>{{i.name}}</td> 
+                    <th scope="row" class="unselectable">{{i.ROWNUM}}</td>  
+                    <td class="unselectable">{{i.name}}</td> 
                 </tr>
             {%endfor%}
             </tbody>

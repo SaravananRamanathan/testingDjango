@@ -2,8 +2,10 @@
 site views
 can create multiple views here.
 """
+from asyncio.windows_events import NULL
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from requests import head
 from .forms import CreateNewList,DeleteList
 from . import models
 # Create your views here.
@@ -62,7 +64,10 @@ def id(response,idValue:int):
     #print(f"testing items: {todolist[0].item_set.all().count()}")  
     #testingLists.html -- new mthod custom forms/advaned forms
     #lists.html -- old method with basic forms
-    return render(response,"main/listsDesigns1.html",{"list":todolist,"id":idValue,"sno":sendToTemplate()})
+    headingName:str=NULL
+    if todolist.exists() :
+        headingName=todolist[0].name;
+    return render(response,"main/listsDesigns1.html",{"list":todolist,"id":idValue,"sno":sendToTemplate(),"headingName":headingName})
 
 def pending(response,idValue:int):
     "only display pending tasks from todolist"
