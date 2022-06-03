@@ -20,10 +20,18 @@
         </thead>  
             <tbody class="display-table-body">
             {%for i in data%}
-                <tr data-display-table-id={{i.id}}> 
+                <tr data-toggle="collapse" data-target=".dataid{{i.id}}" data-display-table-id={{i.id}}> 
                     <th scope="row" class="unselectable">{{i.ROWNUM}}</td>  
                     <td class="unselectable">{{i.name}}</td> 
                 </tr>
+
+                <tr class="collapse dataid{{i.id}}">
+                    <td>testing line 1</td>
+                </tr>
+                <tr class="collapse dataid{{i.id}}">
+                    <td>testing line 2</td>
+                </tr>
+
             {%endfor%}
             </tbody>
         </table>
