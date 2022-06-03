@@ -13,9 +13,67 @@
         }
         else if($(this).data("delete-id")){
             
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            const csrftoken = getCookie('csrftoken');
+
             id=$(this).data("delete-id");
-            alert("delete clicked: "+id);
-            
+            //alert("delete clicked: "+id); //testing ok.
+
+            $.ajax({
+                url: '/ajax/',
+                type: "POST",
+                data: {
+                    id:id
+                },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                },
+                success: function (data) {
+                    console.log(data);
+                    location.reload(true)
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+
+            /*fetch('/ajax') //get using fetch api
+                .then(function(response){
+                    return response.json();
+                })
+                .then(function(data){
+                    //alert("data received: "+parsedResponse)
+                    alert("testing ok: "+data.msg);
+                    console.log(data);
+                })
+                .catch(function(err){
+                    console.log(err);
+                });*/
+                /*$.ajax({ //jquery method get
+                    url: '/ajax/',
+                    success: function (data) {
+                        console.log(data);
+                        alert("testing: "+data.msg);
+                    }
+                });*/
+
+
+
+
             /*$.ajax({
                 type: "POST",
                 url: "http://192.168.68.138:8000/delete/",

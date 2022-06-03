@@ -9,5 +9,6 @@ urlpatterns = [
     path("",views.home, name="home"),#home page
     path("create/",views.create,name="createList"),
     path("display/",views.display,name="displayList"),
-    path("delete/",views.delete,name="deleteList")
+    path("delete/",views.delete,name="deleteList"),
+    path("ajax/",views.ajax_view,name="ajax")
 ]

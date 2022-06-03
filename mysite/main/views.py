@@ -3,12 +3,31 @@ site views
 can create multiple views here.
 """
 from asyncio.windows_events import NULL
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from requests import head
 from .forms import CreateNewList,DeleteList
 from . import models
 # Create your views here.
+
+def ajax_view(request):
+    if request.method=="POST":
+        "post method"
+        print("received from ajax: {}".format(request.POST))
+        data={
+            "msg":"post method test ok",
+        }
+        id=request.POST.get("id")
+        print(f"received id={id}")
+        temp=models.ToDoList.objects.all();
+        temp.filter(id=id).delete()   
+        #HttpResponseRedirect("/display")
+        return JsonResponse(data);
+    else:
+        data={
+          "msg":"get method test ok",
+        }
+        return JsonResponse(data)
 
 def home(response):
     "home page"
