@@ -51,10 +51,6 @@ body::-webkit-scrollbar-thumb{
   margin-right: 3rem;
   color:#00ff8c;
 }*/
-.custom-main{
-  margin-left:5rem;
-  /*padding:0.5rem;*/
-}
 .customSide-navbar{
   display:block;
   position: fixed;
@@ -224,5 +220,9 @@ todolist-item-delete
   }
   .customSide-navbar:hover ~ .navbar .navbar-text{
     margin-left: 16rem !important;
+  }
+  .custom-main{
+    margin-left:5rem;
+    /*padding:0.5rem;*/
   }
 }
