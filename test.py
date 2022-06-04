@@ -1,16 +1,30 @@
-from typing import List
 
-class Solution:
-    def twoSum(self, nums: List[int], target: int):
-       hashmap = {}
-       for i in range(len(nums)):
-           complement = target - nums[i]
-           print(i,target,nums[i],complement)
-           if complement in hashmap:
-               return [i, hashmap[complement]]
-           hashmap[nums[i]] = i
-           
+import os
+import select
+import discord
+from dotenv import load_dotenv
 
-input_list = [2,8,19,15,1]
-ob1 = Solution()
-print(ob1.twoSum(input_list, 20))
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
+
+client = discord.Client()
+#client = commands.Bot("!")
+@client.event
+async def on_ready():
+        print(f'{client.user} has connected to Discord!')
+
+@client.event
+async def on_closed():
+    print('closed')
+
+@client.command()
+async def ping(ctx):
+	await ctx.channel.send("pong!")
+
+965794132536721418
+@client.event 
+async def on_message(message):
+    print("new message");
+    await client.get_channel(965794132536721418).send('test ok read msg ');
+
+client.run(TOKEN)

@@ -10,6 +10,26 @@ from .forms import CreateNewList,DeleteList
 from . import models
 # Create your views here.
 
+def todolist_item_delete_request(request):
+    if request.method=="POST":
+        "post method"
+        print("received from ajax to delete todolist item: {}".format(request.POST))
+        data={
+            "msg":"post method for deleting todolist item received.",
+        }
+        id=request.POST.get("id")
+        print(f"received id={id}")
+        temp=models.Item.objects.all();
+        temp.filter(id=id).delete();
+        #print(f"about to delete: {temp.filter(id=id)}");   
+        #HttpResponseRedirect("/display")
+        return JsonResponse(data);
+    else:
+        data={
+          "msg":"get method test ok",
+        }
+        return JsonResponse(data)
+
 def ajax_view(request):
     if request.method=="POST":
         "post method"
@@ -49,6 +69,7 @@ def id(response,idValue:int):
             print("testing save button")
             if todolist[0].item_set.all().exists():
                 for i in todolist[0].item_set.all():
+                    i.text = response.POST.get('item-name'+str(i.id))
                     if response.POST.get('c'+str(i.id)):
                         ""
                         print("checked case")

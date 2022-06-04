@@ -27,7 +27,11 @@
                         {%endif%}
                     </div>
                 </div>
-                <input type="text" value="{{i.text}}" class="form-control">
+                <input type="text" value="{{i.text}}" name="item-name{{i.id}}" class="form-control todolist-items"/>
+                <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-danger btn-sm todolist-item-delete" data-todolist-item-id={{i.id}}>delete</button>
+                </div>
+                
             </div>
          {%endfor%}
         {%else%}

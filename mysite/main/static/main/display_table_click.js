@@ -1,4 +1,40 @@
-
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+} 
+   $('.todolist-item-delete').click(function(){
+        id=$(this).data("todolist-item-id");
+        //alert("testing ok. todolist-item delete button clicked, id: "+id); -- test was ok.
+        const csrftoken = getCookie('csrftoken');
+            $.ajax({
+                url: '/delete-todolist-item/',
+                type: "POST",
+                data: {
+                    id:id
+                },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                },
+                success: function (data) {
+                    console.log(data);
+                    location.reload(true)
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+    });
     $('#display-table > tbody > tr').click(function() {
         //alert("you are being redirected to id: "+$(this).data("display-table-id"))
         //window.location =("/id/"+$(this).data("display-table-id"));
@@ -13,26 +49,12 @@
         }
         else if($(this).data("delete-id")){
             
-            function getCookie(name) {
-                let cookieValue = null;
-                if (document.cookie && document.cookie !== '') {
-                    const cookies = document.cookie.split(';');
-                    for (let i = 0; i < cookies.length; i++) {
-                        const cookie = cookies[i].trim();
-                        // Does this cookie string begin with the name we want?
-                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
-                        }
-                    }
-                }
-                return cookieValue;
-            }
-            const csrftoken = getCookie('csrftoken');
-
+            
+            
             id=$(this).data("delete-id");
             //alert("delete clicked: "+id); //testing ok.
 
+            const csrftoken = getCookie('csrftoken');
             $.ajax({
                 url: '/ajax/',
                 type: "POST",
