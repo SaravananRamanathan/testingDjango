@@ -5,8 +5,7 @@ can create multiple views here.
 from asyncio.windows_events import NULL
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
-from requests import head
-from .forms import CreateNewList,DeleteList
+from .forms import CreateNewList
 from . import models
 # Create your views here.
 
@@ -20,6 +19,7 @@ def todolist_item_delete_request(request):
         id=request.POST.get("id")
         print(f"received id={id}")
         temp=models.Item.objects.all();
+        print(f"about to delete items: {temp.filter(id=id)}")
         temp.filter(id=id).delete();
         #print(f"about to delete: {temp.filter(id=id)}");   
         #HttpResponseRedirect("/display")
@@ -40,6 +40,7 @@ def ajax_view(request):
         id=request.POST.get("id")
         print(f"received id={id}")
         temp=models.ToDoList.objects.all();
+        print(f"about to delete todolist: {temp.filter(id=id)}")
         temp.filter(id=id).delete()   
         #HttpResponseRedirect("/display")
         return JsonResponse(data);
@@ -90,34 +91,31 @@ def id(response,idValue:int):
             if not itemName.isspace():
                 if len(itemName)>0:
                     if itemName[0]!=' ':
-                        #print("elibible")        
+                        #print("elibible") 
+                        temp=todolist[0].item_set.all();
+                        print(f"testing  temp {temp}")       
                         todolist[0].item_set.create(text=itemName,complete=False)
+                        print(f"testing  temp after create: {temp}")   
             #todolist[0].item_set.create(text=itemName,complete=False)
-
+        elif response.POST.get("deleteItem"):
+            "deleting item"
+            id=response.POST.get("deleteItem");
+            print(f"about to delete id: {id}")
+            temp=models.Item.objects.all();
+            print(f"about to delete items: {temp.filter(id=id)}")
+            temp.filter(id=id).delete();
+        return HttpResponseRedirect(response.path_info)#return to the same page.
 
     class sendToTemplate:
         temp=0
         def num(self,):
             self.temp+=1
             return self.temp
-    #data=sendToTemplate()
-    #print(f"testing items: {todolist[0].item_set.all().count()}")  
-    #testingLists.html -- new mthod custom forms/advaned forms
-    #lists.html -- old method with basic forms
+
     headingName:str=NULL
     if todolist.exists() :
         headingName=todolist[0].name;
-    return render(response,"main/listsDesigns1.html",{"list":todolist,"id":idValue,"sno":sendToTemplate(),"headingName":headingName})
-
-def pending(response,idValue:int):
-    "only display pending tasks from todolist"
-    todolist = models.ToDoList.objects.filter(id=idValue)
-    return render(response,"main/listPending.html",{"list":todolist,"id":idValue})
-
-def completed(response,idValue:int):
-    "only display completed tasks from todolist"
-    todolist = models.ToDoList.objects.filter(id=idValue)
-    return render(response,"main/listCompleted.html",{"list":todolist,"id":idValue})
+    return render(response,"main/lists.html",{"list":todolist,"id":idValue,"sno":sendToTemplate(),"headingName":headingName})
 
 def create(response):
     if response.method == "POST":
@@ -138,22 +136,4 @@ def display(response):
         #print(i.ROWNUM)
     
     
-    return render(response,"main/displayDesigns1.html",{"data":todolist})
-
-def delete(response):
-    temp = models.ToDoList.objects.all()
-    max_id=0
-    for i in temp:
-        max_id=i.id
-    
-    if response.method=="POST":
-        print("post received")
-        form1 = DeleteList(max_id,response.POST)
-        if form1.is_valid():
-            "if valid input , then delete that id"
-            temp.filter(id=form1.cleaned_data["id"]).delete()
-            
-            return HttpResponseRedirect("/display")
-    else:
-        form1 = DeleteList(max_id)
-    return render(response,"main/deleteList.html",{"form":form1})
+    return render(response,"main/display.html",{"data":todolist})
