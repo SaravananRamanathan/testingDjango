@@ -22,5 +22,7 @@ urlpatterns = [
     path('', include("main.urls")),
     path('id/',include("main.urls2")),
     path('register/',userAccessViews.register,name="register"),
+    path('',include("django.contrib.auth.urls")),
+    
 ]
 # /home/start

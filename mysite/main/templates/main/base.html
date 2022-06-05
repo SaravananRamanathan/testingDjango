@@ -196,6 +196,11 @@
              ... 
             {%endblock%}
           <!--</span>-->
+          {% if user.is_authenticated %}
+          <button type="button" onclick="logoutclick()"  class="btn btn-outline-danger btn-sm">logout</button>
+          {%else%}
+            <button type="button" onclick="loginclick()" class="btn btn-outline-success btn-sm">Login</button>
+          {%endif%}
         </nav>
 
         <div id="content" name="main_content" class="custom-main">
@@ -203,9 +208,19 @@
                 <div class="col-8">-->
                     <!--<h1 class="mt-2">ToDoList.io</h1>
                     <hr class="mt-0 mb-4">-->
-                    {%block content%}
+                      {% if user.is_authenticated %}
+                      {%block content%}
                         <h3>We are working on bringing this page online asap.<h3>
-                    {%endblock%}
+                      {%endblock%}
+                      {%else%}
+                        {%block notloggedin%}
+                          <h3>You are not logged-in.<h3>  
+                          <p>Dont't have an account?<a href="/register">Create one</a></p> 
+                        {%endblock%}
+                      {% endif %}
+                      
+
+                      
                 <!--</div>
               </div>-->
         </div>
@@ -228,7 +243,7 @@
     <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table-vue.min.js"></script>
     -->
     <!--custom Javascript-->
-    <script src="{% static 'main/display_table_click.js'%}?15"></script>
+    <script src="{% static 'main/display_table_click.js'%}?16"></script>
    
     </body>
 </html>

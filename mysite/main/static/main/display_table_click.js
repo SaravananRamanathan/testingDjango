@@ -1,3 +1,4 @@
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -77,3 +78,18 @@ function getCookie(name) {
         
          
     });
+function loginclick(){
+    //alert("testing: "+window.location.pathname);
+    if(window.location.pathname == "/login/"){
+        alert("you are already at login page.")
+    }
+    else    window.location = "/login"
+}
+function logoutclick(){
+    window.location = "/logout"
+}
+   /* $('.loginclick').click(function(){
+        alert("log in clicked"); //-- test was ok.
+        
+    });
+*/

@@ -6,6 +6,16 @@
 <span class="navbar-text custom-white-text unselectable">Register</span>
 {%endblock%}
 
+{% load crispy_forms_tags %}
+
 {%block content%}
-    
+    <h3>you are already logged in , log out to register as a different user.<h3>
+{%endblock%}
+
+{%block notloggedin%}
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success">Register</button>
+    </form>
 {%endblock%}
