@@ -112,7 +112,7 @@ def id(response,idValue:int):
             self.temp+=1
             return self.temp
 
-    headingName:str=NULL
+    headingName:str=None
     if todolist.exists() :
         headingName=todolist[0].name;
     return render(response,"main/lists.html",{"list":todolist,"id":idValue,"sno":sendToTemplate(),"headingName":headingName})
