@@ -2,10 +2,8 @@
 site views
 can create multiple views here.
 """
-from asyncio.windows_events import NULL
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
-from pyparsing import And
 from .forms import CreateNewList
 from . import models
 # Create your views here.
