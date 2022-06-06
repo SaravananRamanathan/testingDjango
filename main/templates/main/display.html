@@ -2,7 +2,7 @@
 {%block title%} Displaying ToDoList's {%endblock%}
 
 {%block mainHeading%} 
-<span class="navbar-text custom-white-text unselectable">Display</span>
+<span class="navbar-text custom-white-text">Display</span>
 {%endblock%}
 
 {%block content%}
@@ -22,7 +22,7 @@
             {%for i in data%}
                 <tr data-toggle="collapse" data-target=".dataid{{i.id}}" data-display-table-id={{i.id}}> 
                     <th scope="row" class="unselectable">{{i.ROWNUM}}</td>  
-                    <td class="unselectable">{{i.name}}</td> 
+                    <td >{{i.name}}</td> 
                 </tr>
 
                 <tr class="collapse dataid{{i.id}}" data-show-id={{i.id}}>
