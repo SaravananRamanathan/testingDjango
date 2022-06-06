@@ -5,6 +5,7 @@ can create multiple views here.
 from asyncio.windows_events import NULL
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
+from pyparsing import And
 from .forms import CreateNewList
 from . import models
 # Create your views here.
@@ -60,7 +61,8 @@ def home(response):
 def id(response,idValue:int):
     "displaying all of todolist"
     #todolist = models.ToDoList.objects.raw(f"SELECT *,row_number() OVER(ORDER BY Id) AS sno FROM main_todolist WHERE id={idValue}")#.filter(id=idValue)
-    todolist = models.ToDoList.objects.filter(id=idValue)
+    userId=response.user.id
+    todolist = models.ToDoList.objects.filter(id=idValue , user_id=userId)
     print(todolist)
     if response.method=="POST":
         ""
@@ -121,9 +123,15 @@ def create(response):
     if response.method == "POST":
         form = CreateNewList(response.POST)
         if form.is_valid():
-            "if data entererd in form is valid"
+            "if data entererd in form is valid"            
+            #Name=form.cleaned_data["name"]
+            #old method
             temp = models.ToDoList(name=form.cleaned_data["name"])
             temp.save()
+            
+            response.user.todolist.add(temp)
+            #response.user.todolist_set.create(name=Name)
+
             return HttpResponseRedirect("/display") #just "/" to redirect to home page 
     else:    
         form=CreateNewList()
@@ -132,7 +140,8 @@ def create(response):
 def display(response):
     #todolist = models.ToDoList.objects.all()
     #TODO: this display function probs will fail if there is no data in list.
-    todolist = models.ToDoList.objects.raw("SELECT *,row_number() OVER(ORDER BY Id) AS ROWNUM FROM main_todolist")
+    #print(f"testing display id: {response.user.id}")
+    todolist = models.ToDoList.objects.raw(f"SELECT *,row_number() OVER(ORDER BY Id) AS ROWNUM FROM main_todolist where user_id={response.user.id}")
         #print(i.ROWNUM)
     
     
