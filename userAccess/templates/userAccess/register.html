@@ -15,6 +15,7 @@
 {%block notloggedin%}
     <form method="POST" class="form-group">
         {% csrf_token %}
+        {% include 'userAccess/messages.html' %}
         {{ form|crispy }}
         <button type="submit" class="btn btn-success">Register</button>
     </form>

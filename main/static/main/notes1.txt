@@ -58,3 +58,8 @@ new Vue({
 <!--{%block mainHeading%} 
 view data
 {%endblock%}-->
+
+
+
+
+user logged-in: {{user.is_authenticated}}

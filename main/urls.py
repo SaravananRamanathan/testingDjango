@@ -9,6 +9,7 @@ urlpatterns = [
     path("",views.home, name="home"),#home page
     path("create/",views.create,name="createList"),
     path("display/",views.display,name="displayList"),
+    path("about-me/",views.aboutMe,name="aboutMe"),
     path("id/<int:idValue>/",views.id, name="id"),
     path("ajax/",views.ajax_view,name="ajax"),
     path("delete-todolist-item/",views.todolist_item_delete_request,name="delete-todolist-item")

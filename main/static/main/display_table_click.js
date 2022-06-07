@@ -88,6 +88,13 @@ function loginclick(){
 function logoutclick(){
     window.location = "/logout"
 }
+
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+    }, 5000);
+
    /* $('.loginclick').click(function(){
         alert("log in clicked"); //-- test was ok.
         

@@ -2,6 +2,7 @@
 site views
 can create multiple views here.
 """
+from urllib import response
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from .forms import CreateNewList
@@ -54,7 +55,9 @@ def home(response):
     #return HttpResponse("<h1>testing- srvnn %s</h1>"%id)
     #testing tables ,so replaced home.html --testing done
     return render(response,"main/home.html",{})
-
+def aboutMe(response):
+    ""
+    return render(response,"main/about-me.html")
 
 def id(response,idValue:int):
     "displaying all of todolist"

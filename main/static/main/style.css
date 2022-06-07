@@ -151,10 +151,23 @@ body::-webkit-scrollbar-thumb{
 .custom-error-text{
   color: #ff0000 !important;
 }
-.navbar-text{/*is is not the answer for long name displaying problem at top bar.*/
-  display: inline-block;
-  width: 70rem;
-  height: 5rem;
+.loginout{
+  right: 0;
+  position: fixed;
+}
+.navbar-text{
+  /*white-space: nowrap;*/
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  left:0;
+  margin-right: 8rem;
+  width: 75%;
+  position: fixed;
+}
+.contactDetails{
+  left:0;
+  margin-left: 10rem !important;
 }
 /*.todolist-items{
   background-color: white !important;
@@ -225,6 +238,9 @@ todolist-item-delete
   }
   .customSide-navbar:hover ~ .navbar .navbar-text{
     margin-left: 16rem !important;
+  }
+  .customSide-navbar:hover ~ .navbar .loginout{
+    visibility: hidden;
   }
   .custom-main{
     margin-left:5rem;
