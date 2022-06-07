@@ -151,6 +151,11 @@ body::-webkit-scrollbar-thumb{
 .custom-error-text{
   color: #ff0000 !important;
 }
+.navbar-text{/*is is not the answer for long name displaying problem at top bar.*/
+  display: inline-block;
+  width: 70rem;
+  height: 5rem;
+}
 /*.todolist-items{
   background-color: white !important;
 }*/
